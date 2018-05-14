@@ -18,25 +18,29 @@ This will give you the words east, eats, esat, esta, etas, and etsa. Continue th
 
 function anagrams(string, arr=string.split(''), n = arr.length) {
 
-    //Base Case:
+    //Base Case: <= Will be hit once n === 1, where all array values will have been pushed to the back of the array once only since n starts at arr.length.
     if (n === 1) {
         count ++
         console.log(arr, count)
     }
     else {
+        //Set count i to 0 do the following operations as long as i < n-1, increment i++ and repeat
         for (let i = 0; i < n - 1; i++) {
+            //Swap the last value of the array by decrementing n. Repeat the previous for loop operation through recursion with the new n value.
             anagrams(string, arr, n-1, count)
-
+            //If n is even, swap arr[i] and arr[n-1]
             if (n % 2 === 0) {
                 let placeholder = arr[i]
                 arr[i] = arr[n-1]
                 arr[n-1] = placeholder
+            //If n is odd, swap arr[0] and arr[n-1]
             } else {
                 let placeholder = arr[0]
                 arr[0] = arr[n-1]
                 arr[n-1] = placeholder
             }
         }
+        //Swap the last value of the array by decrementing n. Repeat the previous for loop operation through recursion with the new n value.
         anagrams(string, arr, n - 1, count)
     }
 }
@@ -45,14 +49,51 @@ function anagrams(string, arr=string.split(''), n = arr.length) {
 // anagrams('a')
 // count = 0
 // anagrams('to')
-count = 0
-anagrams('toe')
 // count = 0
-// anagrams('east')
+// anagrams('toe')
+count = 0
+anagrams('east')
 // count = 0
 // anagrams('north')
 // count = 0
 // anagrams('fourteen')
+
+/*
+Example for 'east':
+n=4
+[ 'e', 'a', 's', 't' ] 1
+
+n=3
+[ 't', 'a', 's', 'e' ] 2
+[ 't', 'e', 's', 'a' ] 3
+[ 't', 'e', 'a', 's' ] 4
+
+n=2
+[ 's', 'a', 't', 'e' ] 5
+[ 't', 'a', 's', 'e' ] 6
+[ 't', 'e', 's', 'a' ] 7
+[ 's', 'e', 't', 'a' ] 8
+[ 't', 'e', 's', 'a' ] 9
+[ 't', 'e', 'a', 's' ] 10
+[ 'a', 'e', 't', 's' ] 11
+[ 't', 'e', 'a', 's' ] 12
+
+n=1
+[ 'e', 's', 't', 'a' ] 13
+[ 's', 'e', 't', 'a' ] 14
+[ 't', 'e', 's', 'a' ] 15
+[ 'e', 't', 's', 'a' ] 16
+[ 's', 't', 'e', 'a' ] 17
+[ 't', 's', 'e', 'a' ] 18
+[ 't', 's', 'a', 'e' ] 19
+[ 's', 't', 'a', 'e' ] 20
+[ 'a', 't', 's', 'e' ] 21
+[ 't', 'a', 's', 'e' ] 22
+[ 's', 'a', 't', 'e' ] 23
+[ 'a', 's', 't', 'e' ] 24
+
+*/
+
 
 function anagramsAlt(string) {
     let arr = string.split('')
