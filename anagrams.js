@@ -8,6 +8,14 @@ For example, given east, use e as a prefix and you would place e in front of all
 This will give you the words east, eats, esat, esta, etas, and etsa. Continue this way until you find all the anagrams for east. There should be 24 of them.
 */
 
+/*
+    Set a counter i to 0
+    Until i === n, generate (n-1) permutations of the first n-1 elements adjoining the last element to each.
+    Then if n is odd, switch the first element and the last one.
+    If n is even, switch the ith element and the last one
+    Increment i++ and repeat
+*/
+
 function anagrams(string, arr=string.split(''), n = arr.length) {
 
     //Base Case:
@@ -19,7 +27,7 @@ function anagrams(string, arr=string.split(''), n = arr.length) {
         for (let i = 0; i < n - 1; i++) {
             anagrams(string, arr, n-1, count)
 
-            if (n % 2 === 1) {
+            if (n % 2 === 0) {
                 let placeholder = arr[i]
                 arr[i] = arr[n-1]
                 arr[n-1] = placeholder
@@ -28,7 +36,6 @@ function anagrams(string, arr=string.split(''), n = arr.length) {
                 arr[0] = arr[n-1]
                 arr[n-1] = placeholder
             }
-
         }
         anagrams(string, arr, n - 1, count)
     }
@@ -38,8 +45,8 @@ function anagrams(string, arr=string.split(''), n = arr.length) {
 // anagrams('a')
 // count = 0
 // anagrams('to')
-// count = 0
-// anagrams('toe')
+count = 0
+anagrams('toe')
 // count = 0
 // anagrams('east')
 // count = 0
@@ -90,4 +97,4 @@ function anagramsAlt(string) {
 // anagramsAlt('toe')
 // anagramsAlt('east')
 // anagramsAlt('north')
-anagramsAlt('fourteen')
+// anagramsAlt('fourteen')
