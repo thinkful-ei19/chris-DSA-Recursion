@@ -43,10 +43,10 @@ function anagrams(string, arr=string.split(''), n = arr.length) {
 // anagrams('a')
 // count = 0
 // anagrams('to')
-// count = 0
-// anagrams('toe')
 count = 0
-anagrams('east')
+anagrams('toe')
+// count = 0
+// anagrams('east')
 // count = 0
 // anagrams('north')
 // count = 0
